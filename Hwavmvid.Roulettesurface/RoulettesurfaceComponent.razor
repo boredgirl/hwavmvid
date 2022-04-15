@@ -1,0 +1,106 @@
+﻿@namespace Hwavmvid.Roulettesurface
+@inherits RoulettesurfaceComponentBase
+
+@using System
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+
+<style type="text/css">
+
+    .numberitemscontainerheight {
+
+        height: @(NumberItemsContainerHeight)px;
+    }
+
+    .carpetgreen {
+
+        background-color: @(Carpetgreen);
+    }
+
+    .rotateditem {
+
+        transform: rotate(270deg);
+    }
+
+</style>
+
+<div class="container p-1 p-sm-2">
+
+    <div class="row g-1 align-items-center numberitemscontainerheight">
+            
+        <div class="col-sm-2">
+
+            @{
+                var zero = NumberItems.FirstOrDefault(); var zerozero = NumberItems.LastOrDefault();
+                List<RoulettesurfaceNumber> zeros = new List<RoulettesurfaceNumber>();
+                zeros.Add(zero); zeros.Add(zerozero);
+            }
+
+            @foreach (var item in zeros)
+            {
+                <div class="my-1">
+
+                    @if (WinItem != null && WinItem.Value == item.Value)
+                    {
+                        <button type="button" class="btn btn-sm w-100 h-100 btn-primary numberitemscontainerheight" style="min-height: 100px;" disabled="@(true)">
+                            @(item.Value == 37 ? "00" : item.Value)
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-sm w-100 h-100 btn-success numberitemscontainerheight" style="min-height: 100px;" disabled="@(true)">
+                            @(item.Value == 37 ? "00" : item.Value)
+                        </button>
+                    }
+
+                </div>
+            }
+
+        </div>
+
+        <div class="col-sm-10">
+
+            <div class="row g-1">
+
+                @foreach (var onethirditems in NumberItems.Skip(1).Take(NumberItems.Count - 2).GroupBy(item => Convert.ToInt32((item.Value - 1) / 12)))
+                {
+
+                    <div class="col-sm-4 g-sm-3">
+
+                        <div class="row g-1">
+
+                            @foreach (var item in onethirditems.ToList<RoulettesurfaceNumber>())
+                            {
+
+                                <div class="col-sm-4">
+
+                                    @if (WinItem != null && WinItem.Value == item.Value)
+                                    {
+                                        <button type="button" class="btn btn-sm btn-primary w-100 h-100 p-sm-4 lead" style="font-size: 0.88rem; height: 100px;" disabled="@(true)">
+                                            <span>@item.Value</span>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-sm w-100 h-100 @(item.Color == Carpetgreen ? "btn-success" : item.Color == Red ? "btn-danger" : item.Color == Black ? "btn-dark" : "btn-primary") p-2 p-sm-4 lead" style="font-size: 0.88rem;" disabled="@(true)">
+                                            <span>@item.Value</span>
+                                        </button>
+                                    }
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+        </div>
+
+    </div>       
+
+</div>

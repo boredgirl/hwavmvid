@@ -1,0 +1,47 @@
+﻿@namespace Oqtane.ChatHubs
+@inherits ModuleBase
+
+@inject NavigationManager NavigationManager
+@inject ChatHubService ChatHubService
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Linq
+@using Oqtane.ChatHubs.Services
+@using Oqtane.ChatHubs.Extensions
+@using Oqtane.ChatHubs.Models
+@using Hwavmvid.Roulette
+@using Hwavmvid.Roulettesurface
+
+<style type="text/css">
+
+    .roulette-background {
+
+        background-image: url('/Modules/Oqtane.ChatHubs/roulettelasvegas.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        min-height: 600px;
+    }
+
+</style>
+
+<div class="d-flex flex-column roulette-background mt-0 mt-sm-2 px-1 py-2 w-100 h-100 bg-secondary border border-primary">
+
+    <div class="w-100 h-100" style="background-color: rgba(255,255,255,0.8);">
+
+        <div class="row g-1">
+            <div class="col-sm-8 col-md-3">
+                <RouletteComponent></RouletteComponent>
+            </div>
+            <div class="col-sm-8 col-md-9">
+                <RoulettesurfaceComponent></RoulettesurfaceComponent>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@code {
+
+}
