@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hwavmvid.Roulettesurface
+namespace Hwavmvid.Rouletteshared.Items
 {
     public class RoulettesurfaceNumber
     {

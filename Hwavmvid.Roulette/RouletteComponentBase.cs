@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Hwavmvid.Rouletteshared.Items;
+using Hwavmvid.Rouletteshared.Events;
 
 namespace Hwavmvid.Roulette
 {
@@ -71,7 +73,6 @@ namespace Hwavmvid.Roulette
         public async Task Play_Clicked()
         {
             this.winitem = null;
-            this.RouletteService.ExposeWinItem(winitem);
             this.roulettecircleradius = 17.5;
             this.playing = true;
             await this.UpdateUI();
@@ -247,7 +248,7 @@ namespace Hwavmvid.Roulette
                         {
                             this.winitem = columnitem as RouletteNumber;
                             this.RouletteService.ExposeWinItem(winitem);
-                        }                    
+                        }
                     }
                     catch (Exception exception)
                     {

@@ -29,7 +29,11 @@ using Microsoft.AspNetCore.Components;
 using Hwavmvid.Jsapinotifications;
 using Hwavmvid.Blackjack;
 using Hwavmvid.Roulette;
+using Hwavmvid.Rouletteitellisense;
 using Hwavmvid.Roulettesurface;
+using Hwavmvid.Roulettecoins;
+using Hwavmvid.Roulettebetoptions;
+using Hwavmvid.Roulettebets;
 
 namespace Oqtane
 {
@@ -72,6 +76,10 @@ namespace Oqtane
             services.AddScoped<BlackjackService, BlackjackService>();
             services.AddScoped<RouletteService, RouletteService>();
             services.AddScoped<RoulettesurfaceService, RoulettesurfaceService>();
+            services.AddScoped<RoulettecoinsService, RoulettecoinsService>();
+            services.AddScoped<RouletteBetoptionsService, RouletteBetoptionsService>();
+            services.AddScoped<RouletteBetsService, RouletteBetsService>();
+            services.AddScoped<RouletteitellisenseService, RouletteitellisenseService>();
 
             services.AddServerSideBlazor()
                 .AddHubOptions(options => options.MaximumReceiveMessageSize = 512 * 1024);

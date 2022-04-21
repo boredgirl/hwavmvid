@@ -48,6 +48,10 @@
     <ProjectReference Include="..\BlazorSlider\BlazorSlider.csproj" />
     <ProjectReference Include="..\BlazorDevices\BlazorDevices.csproj" />
     <ProjectReference Include="..\BlazorDownload\BlazorDownload.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Roulettebetoptions\Hwavmvid.Roulettebetoptions.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Roulettecoins\Hwavmvid.Roulettecoins.csproj" />
+    <ProjectReference Include="..\Hwavmvid.RouletteItellisense\Hwavmvid.Rouletteitellisense.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Rouletteshared\Hwavmvid.Rouletteshared.csproj" />
     <ProjectReference Include="..\Hwavmvid.Stringpics\Hwavmvid.Stringpics.csproj" />
     <ProjectReference Include="..\Hwavmvid.Jsapinotifications\Hwavmvid.Jsapinotifications.csproj" />
     <ProjectReference Include="..\Hwavmvid.Blackjack\Hwavmvid.Blackjack.csproj" />

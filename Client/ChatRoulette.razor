@@ -9,8 +9,7 @@
 @using Oqtane.ChatHubs.Services
 @using Oqtane.ChatHubs.Extensions
 @using Oqtane.ChatHubs.Models
-@using Hwavmvid.Roulette
-@using Hwavmvid.Roulettesurface
+@using Hwavmvid.Rouletteitellisense
 
 <style type="text/css">
 
@@ -20,23 +19,16 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        min-height: 600px;
+        min-height: 680px;
     }
 
 </style>
 
-<div class="d-flex flex-column roulette-background mt-0 mt-sm-2 px-1 py-2 w-100 h-100 bg-secondary border border-primary">
+<div class="d-flex flex-column roulette-background mt-0 mt-sm-2 p-1 px-sm-3 py-sm-5 w-100 h-100 bg-secondary border border-primary">
 
-    <div class="w-100 h-100" style="background-color: rgba(255,255,255,0.8);">
+    <div class="w-100 h-100" style="background-color: rgba(255,255,255,0.8); min-height: 600px;">
 
-        <div class="row g-1">
-            <div class="col-sm-8 col-md-3">
-                <RouletteComponent></RouletteComponent>
-            </div>
-            <div class="col-sm-8 col-md-9">
-                <RoulettesurfaceComponent></RoulettesurfaceComponent>
-            </div>
-        </div>
+        <RouletteitellisenseComponent></RouletteitellisenseComponent>
 
     </div>
 

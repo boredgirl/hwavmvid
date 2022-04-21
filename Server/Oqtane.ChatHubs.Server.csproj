@@ -59,6 +59,10 @@
     <ProjectReference Include="..\Hwavmvid.Motiondetection\Hwavmvid.Motiondetection.csproj" />
     <ProjectReference Include="..\Hwavmvid.Jsapinotifications\Hwavmvid.Jsapinotifications.csproj" />
     <ProjectReference Include="..\Hwavmvid.Blackjack\Hwavmvid.Blackjack.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Roulettebetoptions\Hwavmvid.Roulettebetoptions.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Roulettebets\Hwavmvid.Roulettebets.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Roulettecoins\Hwavmvid.Roulettecoins.csproj" />
+    <ProjectReference Include="..\Hwavmvid.RouletteItellisense\Hwavmvid.Rouletteitellisense.csproj" />
     <ProjectReference Include="..\Hwavmvid.Roulette\Hwavmvid.Roulette.csproj" />
     <ProjectReference Include="..\Hwavmvid.Roulettesurface\Hwavmvid.Roulettesurface.csproj" />
     <ProjectReference Include="..\Shared\Oqtane.ChatHubs.Shared.csproj" />

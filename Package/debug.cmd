@@ -54,6 +54,16 @@ XCOPY "..\Hwavmvid.Roulette\bin\Debug\net6.0\Hwavmvid.Roulette.dll" "..\..\oqtan
 XCOPY "..\Hwavmvid.Roulette\bin\Debug\net6.0\Hwavmvid.Roulette.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
 XCOPY "..\Hwavmvid.Roulettesurface\bin\Debug\net6.0\Hwavmvid.Roulettesurface.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
 XCOPY "..\Hwavmvid.Roulettesurface\bin\Debug\net6.0\Hwavmvid.Roulettesurface.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettebetoptions\bin\Debug\net6.0\Hwavmvid.Roulettebetoptions.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettebetoptions\bin\Debug\net6.0\Hwavmvid.Roulettebetoptions.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Rouletteitellisense\bin\Debug\net6.0\Hwavmvid.Rouletteitellisense.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Rouletteitellisense\bin\Debug\net6.0\Hwavmvid.Rouletteitellisense.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Rouletteshared\bin\Debug\net6.0\Hwavmvid.Rouletteshared.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Rouletteshared\bin\Debug\net6.0\Hwavmvid.Rouletteshared.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettecoins\bin\Debug\net6.0\Hwavmvid.Roulettecoins.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettecoins\bin\Debug\net6.0\Hwavmvid.Roulettecoins.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettebets\bin\Debug\net6.0\Hwavmvid.Roulettebets.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Roulettebets\bin\Debug\net6.0\Hwavmvid.Roulettebets.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
 
 
 XCOPY "..\Server\wwwroot\Modules\Oqtane.ChatHubs\*" "..\..\oqtane.framework\Oqtane.Server\wwwroot\Modules\Oqtane.ChatHubs\" /Y /S /I

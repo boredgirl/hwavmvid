@@ -135,17 +135,17 @@
 
     </div>
 
-    <div class="position-relative text-center p-2 p-sm-5">
+    <div class="position-relative text-center p-3 p-sm-4">
 
-        <button @onclick="@(async () => await Play_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2rem;"  disabled="@(GameStatus != BlackjackGameStatus.NewGame ? true : false)">
+        <button @onclick="@(async () => await Play_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2.4rem;"  disabled="@(GameStatus != BlackjackGameStatus.NewGame ? true : false)">
             Play new game
         </button>
 
-        <button @onclick="@(async () => await Next_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2rem;" disabled="@(GameStatus != BlackjackGameStatus.ClientGameplay ? true : false)">
+        <button @onclick="@(async () => await Next_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2.4rem;" disabled="@(GameStatus != BlackjackGameStatus.ClientGameplay ? true : false)">
             Continue
         </button>
 
-        <button @onclick="@(async () => await Stop_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2rem;" disabled="@(GameStatus != BlackjackGameStatus.ClientGameplay ? true : false)">
+        <button @onclick="@(async () => await Stop_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-5 lead" style="font-size: 2.4rem;" disabled="@(GameStatus != BlackjackGameStatus.ClientGameplay ? true : false)">
             Stop
         </button>
 

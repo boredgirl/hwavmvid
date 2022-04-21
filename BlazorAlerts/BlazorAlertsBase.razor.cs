@@ -29,7 +29,7 @@ namespace BlazorAlerts
                 };
 
                 this.BlazorAlertsService.AddAlert(alert);
-                StateHasChanged();
+                this.StateHasChanged();
             });
         }
 

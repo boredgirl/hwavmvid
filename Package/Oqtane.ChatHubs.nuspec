@@ -118,6 +118,17 @@
     <file src="..\Hwavmvid.Roulette\bin\Release\net6.0\Hwavmvid.Roulette.pdb" target="lib\net6.0" />
     <file src="..\Hwavmvid.Roulettesurface\bin\Release\net6.0\Hwavmvid.Roulettesurface.dll" target="lib\net6.0" />
     <file src="..\Hwavmvid.Roulettesurface\bin\Release\net6.0\Hwavmvid.Roulettesurface.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettebetoptions\bin\Release\net6.0\Hwavmvid.Roulettebetoptions.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettebetoptions\bin\Release\net6.0\Hwavmvid.Roulettebetoptions.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Rouletteitellisense\bin\Release\net6.0\Hwavmvid.Rouletteitellisense.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Rouletteitellisense\bin\Release\net6.0\Hwavmvid.Rouletteitellisense.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Rouletteshared\bin\Release\net6.0\Hwavmvid.Rouletteshared.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Rouletteshared\bin\Release\net6.0\Hwavmvid.Rouletteshared.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettecoins\bin\Release\net6.0\Hwavmvid.Roulettecoins.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettecoins\bin\Release\net6.0\Hwavmvid.Roulettecoins.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettebets\bin\Release\net6.0\Hwavmvid.Roulettebets.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Roulettebets\bin\Release\net6.0\Hwavmvid.Roulettebets.pdb" target="lib\net6.0" />
+
 
     <file src="..\BlazorAccordion\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\BlazorAlerts\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
@@ -142,6 +153,11 @@
     <file src="..\Hwavmvid.Blackjack\wwwroot\images\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Hwavmvid.Roulette\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Hwavmvid.Roulettesurface\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+    <file src="..\Hwavmvid.Roulettebetoptions\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+    <file src="..\Hwavmvid.Rouletteitellisense\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+    <file src="..\Hwavmvid.Roulettecoins\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+    <file src="..\Hwavmvid.Roulettebets\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+
 
     <file src="..\Server\wwwroot\Modules\Oqtane.ChatHubs\ffmpeg.exe" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Server\wwwroot\Modules\Oqtane.ChatHubs\ffplay.exe" target="wwwroot/Modules/Oqtane.ChatHubs" />

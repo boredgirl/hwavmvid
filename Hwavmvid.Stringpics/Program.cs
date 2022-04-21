@@ -73,9 +73,9 @@ namespace Oqtane.ChatHubs.Stringpics {
             if (!string.IsNullOrEmpty(methodtype) && !string.IsNullOrEmpty(stringpictype))
             {                
                 picstring += @"********************" + linebreak;
-                picstring += @"******------********" + linebreak;
-                picstring += @"*****/      \*******" + linebreak;
-                picstring += @"***--        ----***" + linebreak;
+                picstring += @"******-----*********" + linebreak;
+                picstring += @"*****/     \********" + linebreak;
+                picstring += @"***--       ----***" + linebreak;
                 picstring += @"***O------------O***" + linebreak;
                 picstring += @"********************" + linebreak;
             }

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Hwavmvid.Rouletteshared\Hwavmvid.Rouletteshared.csproj" />
     <ProjectReference Include="..\Hwavmvid.Roulette\Hwavmvid.Roulette.csproj" />
   </ItemGroup>
 

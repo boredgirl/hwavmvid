@@ -2,6 +2,8 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Hwavmvid.Rouletteshared.Events;
+using Hwavmvid.Rouletteshared.Items;
 
 namespace Hwavmvid.Roulette
 {
