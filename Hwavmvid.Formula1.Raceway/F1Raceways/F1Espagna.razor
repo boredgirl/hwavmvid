@@ -1,0 +1,69 @@
+﻿@namespace Hwavmvid.Formula1.Raceway
+@inherits F1Racewaybase
+
+@using System
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using Hwavmvid.Formula1.Shared.Items
+
+<div class="p-1 p-sm-2 text-center bg-transparent">
+
+    @if (loading)
+    {
+        <div class="text-center w-100 p-3 bg-light text-dark">
+            <img src="/Modules/Oqtane.ChatHubs/hwavmvidformula1loading.gif" />
+        </div>
+    }
+
+    @if (!loading)
+    {
+        <div class="mx-auto p-0" style="width: 420px">
+
+            <div class="roulette-map" style="width: @(containerwidth)px; height: @(containerheight)px;">
+
+                @foreach (var row in Map.Rows)
+                {
+
+                    <div class="row p-0 g-0">
+
+                        @foreach (var col in Map.Columns.Where(item => item.RowId == row.RowId))
+                        {                            
+
+                            <div class="col position-relative p-0" style="width: @(griditemwidth)px; height: @(griditemheight)px;">
+                                
+                                @foreach (var item in col.Racecars)
+                                {
+                                    <div class="position-absolute" : string.Empty)" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
+                                @foreach (var item in col.Landscapes)
+                                {
+                                    <div class="position-absolute" : string.Empty)" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+@code {
+
+}
