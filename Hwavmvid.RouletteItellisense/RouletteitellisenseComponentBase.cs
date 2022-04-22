@@ -136,7 +136,7 @@ namespace Hwavmvid.Rouletteitellisense
                     {
                         if (e.WinItem.Value >= 1 && e.WinItem.Value <= 18)
                         {
-                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value);
                             betitem.Status = RouletteBetStatus.Won;
                         }
                         else
@@ -150,7 +150,7 @@ namespace Hwavmvid.Rouletteitellisense
                     {
                         if (e.WinItem.Value >= 19 && e.WinItem.Value <= 36)
                         {
-                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value);
                             betitem.Status = RouletteBetStatus.Won;
                         }
                         else
@@ -164,7 +164,7 @@ namespace Hwavmvid.Rouletteitellisense
                     {
                         if (e.WinItem.Value >= 1 && e.WinItem.Value <= 12)
                         {
-                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 3);
                             betitem.Status = RouletteBetStatus.Won;
                         }
                         else
@@ -178,7 +178,7 @@ namespace Hwavmvid.Rouletteitellisense
                     {
                         if (e.WinItem.Value >= 13 && e.WinItem.Value <= 24)
                         {
-                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 3);
                             betitem.Status = RouletteBetStatus.Won;
                         }
                         else
@@ -192,7 +192,7 @@ namespace Hwavmvid.Rouletteitellisense
                     {
                         if (e.WinItem.Value >= 25 && e.WinItem.Value <= 36)
                         {
-                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 3);
                             betitem.Status = RouletteBetStatus.Won;
                         }
                         else
