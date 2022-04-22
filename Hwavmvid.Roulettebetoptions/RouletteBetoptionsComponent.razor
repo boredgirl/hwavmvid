@@ -8,12 +8,12 @@
 @using Hwavmvid.Rouletteshared.Items
 @using Hwavmvid.Rouletteshared.Constants
 
-<div class="position-relative" style="width: 100px; height: 100px;">
+<div class="position-relative" style="width: 70px; height: 70px;">
 
     @if (Item.Key == RouletteBetoptionsType.Red || 
          Item.Key == RouletteBetoptionsType.Black)
     {
-        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.4rem !important;">
+        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.2rem !important;">
             @(Item.Value)
         </button>
     }
@@ -21,7 +21,7 @@
     @if (Item.Key == RouletteBetoptionsType.FirstHalf || 
          Item.Key == RouletteBetoptionsType.SecondHalf)
     {
-        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.4rem !important;">
+        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.2rem !important;">
             @(Item.Value)
         </button>
     }
@@ -30,7 +30,7 @@
          Item.Key == RouletteBetoptionsType.SecondTwelve || 
          Item.Key == RouletteBetoptionsType.ThirdTwelve)
     {
-        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.4rem !important;">
+        <button type="button" class="btn btn-sm btn-primary w-100 h-100" disabled="@true" style="font-size: 1.2rem !important;">
             @(Item.Value)
         </button>
     }

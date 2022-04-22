@@ -68,26 +68,7 @@
                     </div>
                 }
 
-            </div>            
-
-            <div class="my-1">
-
-                <button @onclick="@(async () => await Play_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-4 lead" style="font-size: 0.88rem;" disabled="@(playing ? true : false)">
-                    Play new game
-                </button>
-
-                <button @onclick="@(async () => await Stop_Clicked())" type="button" class="btn btn-sm btn-primary p-2 p-sm-4 lead" style="font-size: 0.88rem;" disabled="@(playing ? false : true)">
-                    Stop game
-                </button>
-
-                @if (winitem != null)
-                {
-                    <button type="button" class="btn btn-sm @(winitem.BackgroundColor == Carpetgreen ? "btn-success" : winitem.BackgroundColor == Red ? "btn-danger" : winitem.BackgroundColor == Black ? "btn-dark" : "btn-primary") p-2 p-sm-4 lead" style="font-size: 0.88rem;" disabled="@(true)">
-                        @(winitem.Value == 37 ? "00" : winitem.Value)
-                    </button>
-                }
-
-            </diV>
+            </div>
 
         </div>
     }

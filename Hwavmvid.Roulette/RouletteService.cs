@@ -14,7 +14,11 @@ namespace Hwavmvid.Roulette
         private IJSObjectReference javascriptfile;
         private IJSRuntime jsruntime;
 
+        public event Action OnPlayRouletteGame;
+        public event Action OnStopRouletteGame;
         public event Action<RouletteEvent> OnWinItemDetected;
+        
+        public bool playing { get; set; } = false;
 
         public RouletteService(IJSRuntime jsRuntime)
         {
@@ -24,6 +28,14 @@ namespace Hwavmvid.Roulette
         {
             this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>(
                "import", "/Modules/Oqtane.ChatHubs/roulettejsinterop.js");
+        }
+        public void PlayNewRouletteGame()
+        {
+            this.OnPlayRouletteGame?.Invoke();
+        }
+        public void StopRouletteGame()
+        {
+            this.OnStopRouletteGame?.Invoke();
         }
         public void ExposeWinItem(RouletteNumber item)
         {

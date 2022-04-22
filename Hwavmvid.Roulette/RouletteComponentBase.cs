@@ -11,7 +11,7 @@ using Hwavmvid.Rouletteshared.Events;
 namespace Hwavmvid.Roulette
 {
 
-    public class RouletteComponentBase : ComponentBase
+    public class RouletteComponentBase : ComponentBase, IDisposable
     {
 
         [Inject] public RouletteService RouletteService { get; set; }
@@ -40,7 +40,6 @@ namespace Hwavmvid.Roulette
         };
 
         public bool loading { get; set; } = true;
-        public bool playing { get; set; } = false;
         public RouletteNumber winitem { get; set; }
 
         public string Black { get; set; } = "black";
@@ -50,6 +49,9 @@ namespace Hwavmvid.Roulette
 
         protected override async Task OnInitializedAsync()
         {
+            this.RouletteService.OnPlayRouletteGame += async () => await this.Play_Clicked();
+            this.RouletteService.OnStopRouletteGame += async () => await this.Stop_Clicked();
+
             this.Map = this.GetRouletteMap();
             this.NumberItems = this.GetRouletteNumbers();
 
@@ -74,14 +76,14 @@ namespace Hwavmvid.Roulette
         {
             this.winitem = null;
             this.roulettecircleradius = 17.5;
-            this.playing = true;
+            this.RouletteService.playing = true;
             await this.UpdateUI();
 
             this.RunRouletteBall();
         }
         public async Task Stop_Clicked()
         {
-            this.playing = false;
+            this.RouletteService.playing = false;
             await this.UpdateUI();
         }
 
@@ -184,7 +186,7 @@ namespace Hwavmvid.Roulette
             int delay = 9;
             int i = 0;
 
-            while (this.playing)
+            while (this.RouletteService.playing)
             {
                 i++;
                 if (ballpower - i == 400)
@@ -238,7 +240,7 @@ namespace Hwavmvid.Roulette
 
                 if (this.roulettecircleradius == 10.0)
                 {
-                    this.playing = false;
+                    this.RouletteService.playing = false;
 
                     try
                     {
@@ -358,7 +360,7 @@ namespace Hwavmvid.Roulette
                     this.AddRouletteItem(container.item.RowId, container.item.ColumnId, container.item);
                 }
 
-                if (!this.playing && this.winitem != null)
+                if (!this.RouletteService.playing && this.winitem != null)
                 {
                     var itens = this.NumberItems.FirstOrDefault(item => item.Value == winitem.Value);
                     if (itens != null)
@@ -372,12 +374,12 @@ namespace Hwavmvid.Roulette
                     }
                 }
 
-                if (!this.playing)
+                if (!this.RouletteService.playing)
                     await this.UpdateUI();
 
                 await InvokeAsync(async () =>
                 {
-                    await Task.Delay(this.playing ? 40 : 180);
+                    await Task.Delay(this.RouletteService.playing ? 40 : 180);
                 });
 
                 i--;
@@ -436,6 +438,11 @@ namespace Hwavmvid.Roulette
             {
                 this.StateHasChanged();
             });
+        }
+        public void Dispose()
+        {
+            this.RouletteService.OnPlayRouletteGame -= async () => await this.Play_Clicked();
+            this.RouletteService.OnStopRouletteGame -= async () => await this.Stop_Clicked();
         }
 
         #region calc circle coor example function

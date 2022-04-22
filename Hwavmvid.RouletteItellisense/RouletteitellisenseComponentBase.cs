@@ -77,13 +77,13 @@ namespace Hwavmvid.Rouletteitellisense
 
                 if (e.WinItem.Value == 0)
                 {
-                    this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 0);
+                    this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
                     betitem.Status = RouletteBetStatus.Lost;
                 }
 
                 if (e.WinItem.Value == 37)
                 {
-                    this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 0);
+                    this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
                     betitem.Status = RouletteBetStatus.Lost;
                 }
 
@@ -95,58 +95,112 @@ namespace Hwavmvid.Rouletteitellisense
                         this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 36);
                         betitem.Status = RouletteBetStatus.Won;
                     }
+                    else
+                    {
+                        this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                        betitem.Status = RouletteBetStatus.Lost;
+                    }
                 }
                 
                 if (betitem.Betoption != null)
                 {
 
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.Red && 
-                        e.WinItem.BackgroundColor.ToLower() == betitem.Betoption.Key.ToString().ToLower())
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.Red)
                     {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 2);
-                        betitem.Status = RouletteBetStatus.Won;
+                        if (e.WinItem.BackgroundColor.ToLower() == betitem.Betoption.Key.ToString().ToLower())
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
+                    }
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.Black)
+                    {
+                        if (e.WinItem.BackgroundColor.ToLower() == betitem.Betoption.Key.ToString().ToLower())
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
                     }
 
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.Black &&
-                        e.WinItem.BackgroundColor.ToLower() == betitem.Betoption.Key.ToString().ToLower())
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.FirstHalf)
                     {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 2);
-                        betitem.Status = RouletteBetStatus.Won;
+                        if (e.WinItem.Value >= 1 && e.WinItem.Value <= 18)
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
+                        
+                    }
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.SecondTwelve)
+                    {
+                        if (e.WinItem.Value >= 19 && e.WinItem.Value <= 36)
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }                        
                     }
 
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.FirstHalf && 
-                        e.WinItem.Value >= 1 && e.WinItem.Value <= 18)
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.FirstTwelve)
                     {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
-                        betitem.Status = RouletteBetStatus.Won;
+                        if (e.WinItem.Value >= 1 && e.WinItem.Value <= 12)
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
+                        
                     }
-
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.SecondTwelve &&
-                        e.WinItem.Value >= 19 && e.WinItem.Value <= 36)
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.SecondTwelve)
                     {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 18);
-                        betitem.Status = RouletteBetStatus.Won;
+                        if (e.WinItem.Value >= 13 && e.WinItem.Value <= 24)
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
+                        
                     }
-
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.FirstTwelve &&
-                        e.WinItem.Value >= 1 && e.WinItem.Value <= 12)
+                    if (betitem.Betoption.Key == RouletteBetoptionsType.ThirdTwelve)
                     {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
-                        betitem.Status = RouletteBetStatus.Won;
-                    }
-
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.SecondTwelve &&
-                        e.WinItem.Value >= 13 && e.WinItem.Value <= 24)
-                    {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
-                        betitem.Status = RouletteBetStatus.Won;
-                    }
-
-                    if (betitem.Betoption.Key == RouletteBetoptionsType.ThirdTwelve &&
-                        e.WinItem.Value >= 25 && e.WinItem.Value <= 36)
-                    {
-                        this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
-                        betitem.Status = RouletteBetStatus.Won;
+                        if (e.WinItem.Value >= 25 && e.WinItem.Value <= 36)
+                        {
+                            this.RouletteitellisenseService.ContextGameValue += (betitem.Coin.Value * 12);
+                            betitem.Status = RouletteBetStatus.Won;
+                        }
+                        else
+                        {
+                            this.RouletteitellisenseService.ContextGameValue -= (betitem.Coin.Value);
+                            betitem.Status = RouletteBetStatus.Lost;
+                        }
+                        
                     }
                 }
 
@@ -169,8 +223,10 @@ namespace Hwavmvid.Rouletteitellisense
                 {
                     this.InvokeAsync(() =>
                     {
+                        this.RouletteService.playing = false;
                         this.RouletteBetsService.BetItems.Clear();
                         this.RouletteitellisenseService.ContextGameId = Guid.NewGuid().ToString();
+                        this.DroppedItem = null;
                         this.StateHasChanged();
                     });
                 });

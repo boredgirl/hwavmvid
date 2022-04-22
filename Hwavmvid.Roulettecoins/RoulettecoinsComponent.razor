@@ -11,9 +11,9 @@
 @using Hwavmvid.Rouletteshared.Enums
 @using Hwavmvid.Rouletteshared.Constants
 
-<div class="position-relative w-100 h-100 draggablerouletteitem">
+<div class="position-relative draggablerouletteitem">
 
-    <div id="@(string.Concat(RouletteConstants.draggableitemprefix, Item.Id))" class="w-100 h-100" draggable="true">
+    <div id="@(string.Concat(RouletteConstants.draggableitemprefix, Item.Id))" draggable="true">
                     
         <button type="button" class="btn btn-sm btn-warning" id="@Item.Id">
             <strong>@(Item.CurrencyAbbr)@(Item.Value)</strong>
@@ -65,6 +65,5 @@
             if (this.RoulettecoinsService.javascriptfile != null)
                 this.RoulettecoinsService.javascriptfile = null;
         }
-    }
-    
+    }    
 }
