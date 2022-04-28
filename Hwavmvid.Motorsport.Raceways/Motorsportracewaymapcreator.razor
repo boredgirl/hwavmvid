@@ -1,0 +1,161 @@
+﻿@namespace Hwavmvid.Motorsport
+
+@using System
+@using System.Linq
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using Hwavmvid.Motorsport.Shared.Items
+
+<div class="p-1 p-sm-2 text-center bg-transparent">
+
+    @if (loading)
+    {
+        <div class="text-center w-100 p-3 bg-light text-dark">
+            <img src="/Modules/Oqtane.ChatHubs/hwavmvidmotorsportloading.gif" />
+        </div>
+    }
+
+    @if (!loading)
+    {
+        <div class="mx-auto p-0">
+
+            <div class="roulette-map" style="width: @(containerwidth)px; height: @(containerheight)px;">
+
+                @foreach (var row in Map.Rows)
+                {
+
+                    <div class="row p-0 g-0">
+
+                        @foreach (var col in Map.Columns.Where(item => item.RowId == row.RowId))
+                        {                            
+
+                            <div class="col position-relative p-0" style="width: @(griditemwidth)px; height: @(griditemheight)px;">
+                                
+                                @foreach (var item in col.Racecars)
+                                {
+                                    <div class="position-absolute" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
+                                @foreach (var item in col.Landscapes)
+                                {
+                                    <div class="position-absolute w-100 h-100" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+@code {
+
+    public bool loading { get; set; }
+
+    public const double containerwidth = rows * griditemwidth;
+    public const double containerheight = cols * griditemheight;
+
+    public const double griditemwidth = 10;
+    public const double griditemheight = 10;
+
+    private const int rows = 80;
+    private const int cols = 80;
+
+    public string Landscapegreen { get; set; } = "rgba(33,109,70,0.8)"; // #216d46
+
+    protected override Task OnInitializedAsync()
+    {
+        this.Map = this.GetMap();
+        this.InitlandscapeItems();
+
+        return base.OnInitializedAsync();
+    }
+
+    public Racewaymap Map { get; set; }
+    public Racewaymap GetMap()
+    {
+
+        Racewaymap map = new Racewaymap();
+        for (var r = 1; r <= rows; r++)
+        {
+
+            Racewayrow row = new Racewayrow();
+            row.RowId = r;
+            map.Rows.Add(row);
+
+            for (var c = 1; c <= cols; c++)
+            {
+
+                Racewaycolumn column = new Racewaycolumn();
+                column.ColumnId = c;
+                column.RowId = r;
+                map.Columns.Add(column);
+            }
+        }
+
+        return map;
+    }
+
+    public Racewaymapitem<Racewayitemtype> landscapeitem { get; set; }
+    public void InitlandscapeItems()
+    {
+
+        foreach (var row in this.Map.Rows)
+        {
+
+            foreach (var container in this.Map.Columns.Where(item => item.RowId == row.RowId).Select((item, index) => new { item = item, index = index }))
+            {
+
+                this.landscapeitem = new Racewaymapitem<Racewayitemtype>(Guid.NewGuid().ToString(), Racewayitemtype.Landscape);
+                this.landscapeitem.RowId = row.RowId;
+                this.landscapeitem.ColumnId = container.index + 1;
+                this.landscapeitem.Id = Guid.NewGuid().ToString();
+                this.landscapeitem.ZIndex = 1;
+                this.landscapeitem.Opacity = 1;
+                this.landscapeitem.BackgroundColor = this.Landscapegreen;
+                this.landscapeitem.Rotation = 0;
+                this.landscapeitem.ImageWidth = 0;
+                this.landscapeitem.ImageHeight = 0;
+                this.landscapeitem.ImageUrl = string.Empty;
+                this.landscapeitem.ImageUrlExtension = string.Empty;
+                this.landscapeitem.Value = 0;
+
+                this.AddMapItem(landscapeitem.RowId, landscapeitem.ColumnId, this.landscapeitem);
+            }
+        }
+    }
+
+    public Racewaycolumn GetMapColumn(int rowid, int colid)
+    {
+        return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
+    }
+    public void AddMapItem(int rowid, int colid, Racewaymapitem<Racewayitemtype> item)
+    {
+
+        var col = this.GetMapColumn(rowid, colid);
+        if (col != null)
+        {
+            var itemlist = col.GetColumnItemsByType(item.Racewayitemtype);
+            if (itemlist != null)
+            {
+                itemlist.Add(item);
+            }
+        }
+                       
+    }
+}

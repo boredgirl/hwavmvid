@@ -3,22 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Hwavmvid.Rouletteitellisense
+namespace Hwavmvid.Motorsport.Raceways
 {
 
-    public class RouletteitellisenseService : IDisposable
+    public class Motorsportraceway : IDisposable
     {
 
         private IJSObjectReference javascriptfile;
         private IJSRuntime jsruntime;
 
-        public RouletteitellisenseService(IJSRuntime jsRuntime)
+        public Motorsportraceway(IJSRuntime jsRuntime)
         {
             this.jsruntime = jsRuntime;
         }
-        public async Task InitRouletteService()
+        public async Task Initracewayervice()
         {
-            this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>("import", "/Modules/Oqtane.ChatHubs/hwavmvidformula1racewayjsinterop.js");
+            this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>("import", "/Modules/Oqtane.ChatHubs/hwavmvidmotorsportjsinterop.js");
         }
         public async Task<string> Prompt(string message)
         {

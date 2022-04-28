@@ -65,5 +65,10 @@ XCOPY "..\Hwavmvid.Roulettecoins\bin\Debug\net6.0\Hwavmvid.Roulettecoins.pdb" ".
 XCOPY "..\Hwavmvid.Roulettebets\bin\Debug\net6.0\Hwavmvid.Roulettebets.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
 XCOPY "..\Hwavmvid.Roulettebets\bin\Debug\net6.0\Hwavmvid.Roulettebets.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
 
+XCOPY "..\Hwavmvid.Motorsport.Raceways\bin\Debug\net6.0\Hwavmvid.Motorsport.Raceways.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Motorsport.Raceways\bin\Debug\net6.0\Hwavmvid.Motorsport.Raceways.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Motorsport.Shared\bin\Debug\net6.0\Hwavmvid.Motorsport.Shared.dll" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+XCOPY "..\Hwavmvid.Motorsport.Shared\bin\Debug\net6.0\Hwavmvid.Motorsport.Shared.pdb" "..\..\oqtane.framework\Oqtane.Server\bin\Debug\net6.0\" /Y
+
 
 XCOPY "..\Server\wwwroot\Modules\Oqtane.ChatHubs\*" "..\..\oqtane.framework\Oqtane.Server\wwwroot\Modules\Oqtane.ChatHubs\" /Y /S /I

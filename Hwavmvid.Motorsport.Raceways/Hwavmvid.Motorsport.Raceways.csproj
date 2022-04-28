@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>9.0</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <AssemblyName>Hwavmvid.Formula1.Raceway</AssemblyName>
+    <AssemblyName>Hwavmvid.Motorsport.Raceways</AssemblyName>
     <OutputType>Library</OutputType>
     <Version>1.0.0</Version>
-    <Product>Hwavmvid.Formula1.Raceway</Product>
+    <Product>Hwavmvid.Motorsport.Raceways</Product>
     <Authors>hwavmvid technologies</Authors>
     <Company>hwavmvid technologies</Company>
     <Copyright>hwavmvid technologies</Copyright>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Hwavmvid.Formula1.Shared\Hwavmvid.Formula1.Shared.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Motorsport.Shared\Hwavmvid.Motorsport.Shared.csproj" />
   </ItemGroup>
 
 </Project>

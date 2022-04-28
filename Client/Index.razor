@@ -17,6 +17,8 @@
 @using Hwavmvid.Blackjack
 @using Hwavmvid.Roulette
 @using Hwavmvid.Roulettesurface
+@using Hwavmvid.Motorsport.Raceways
+@using Hwavmvid.Motorsport.Shared
 
 <link href="/Modules/Oqtane.ChatHubs/blazoralerts.min.css" rel="stylesheet" />
 <link href="/Modules/Oqtane.ChatHubs/chat-hub-stylesheets.css" rel="stylesheet" />
@@ -276,6 +278,7 @@
 
         @if (InnerWidth >= 800)
         {
+
             <TabItem>
                 <TabTitle>Blackjack</TabTitle>
                 <TabContent>
@@ -289,6 +292,16 @@
                     <ChatRoulette></ChatRoulette>
                 </TabContent>
             </TabItem>
+            
+            <!--
+            <TabItem>
+                <TabTitle>Motorsportgame</TabTitle>
+                <TabContent>
+                    <Motorsportgamecomponent></Motorsportgamecomponent>
+                </TabContent>
+            </TabItem>
+            -->
+
         }        
 
     </TabContainer>

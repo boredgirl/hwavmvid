@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Hwavmvid.Formula1.Shared.Items;
+using Hwavmvid.Motorsport.Shared.Items;
 
-namespace Hwavmvid.Formula1.Raceway
+namespace Hwavmvid.Motorsport.Raceways
 {
-    public class F1Racewaybase : ComponentBase, IDisposable
+    public class Motorsportracewaybase : ComponentBase, IDisposable
     {
 
         public bool loading { get; set; }
@@ -28,23 +28,27 @@ namespace Hwavmvid.Formula1.Raceway
         protected override Task OnInitializedAsync()
         {
             this.Map = this.GetMap();
+            this.InitlandscapeItems();
+
             return base.OnInitializedAsync();
         }
 
-        public F1Racewaymap Map { get; set; }
-        public F1Racewaymap GetMap()
+        public Racewaymap Map { get; set; }
+        public Racewaymap GetMap()
         {
-            F1Racewaymap map = new F1Racewaymap();
+
+            Racewaymap map = new Racewaymap();
             for (var r = 1; r <= rows; r++)
             {
 
-                F1Racewayrow row = new F1Racewayrow();
+                Racewayrow row = new Racewayrow();
                 row.RowId = r;
                 map.Rows.Add(row);
 
                 for (var c = 1; c <= cols; c++)
                 {
-                    F1Racewaycolumn column = new F1Racewaycolumn();
+
+                    Racewaycolumn column = new Racewaycolumn();
                     column.ColumnId = c;
                     column.RowId = r;
                     map.Columns.Add(column);
@@ -54,14 +58,17 @@ namespace Hwavmvid.Formula1.Raceway
             return map;
         }
 
-        public F1Racewaymapitem<F1Racewayitemtype> landscapeitem { get; set; }
-        public void Initlandscape()
+        public Racewaymapitem<Racewayitemtype> landscapeitem { get; set; }
+        public void InitlandscapeItems()
         {
+
             foreach (var row in this.Map.Rows)
             {
+
                 foreach (var container in this.Map.Columns.Where(item => item.RowId == row.RowId).Select((item, index) => new { item = item, index = index }))
                 {
-                    this.landscapeitem = new F1Racewaymapitem<F1Racewayitemtype>(Guid.NewGuid().ToString(), F1Racewayitemtype.Landscape);
+
+                    this.landscapeitem = new Racewaymapitem<Racewayitemtype>(Guid.NewGuid().ToString(), Racewayitemtype.Landscape);
                     this.landscapeitem.RowId = row.RowId;
                     this.landscapeitem.ColumnId = container.index + 1;
                     this.landscapeitem.Id = Guid.NewGuid().ToString();
@@ -80,18 +87,23 @@ namespace Hwavmvid.Formula1.Raceway
             }
         }
 
-        public F1Racewaycolumn GetMapColumn(int rowid, int colid)
+        public Racewaycolumn GetMapColumn(int rowid, int colid)
         {
             return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
         }
-        public void AddMapItem(int rowid, int colid, F1Racewaymapitem<F1Racewayitemtype> item)
+        public void AddMapItem(int rowid, int colid, Racewaymapitem<Racewayitemtype> item)
         {
 
             var col = this.GetMapColumn(rowid, colid);
-            if (item.Mapitemtype == F1Racewayitemtype.Racecar)
+            if (col != null)
             {
-                col.Racecars.Add(item);
+                var itemlist = col.GetColumnItemsByType(item.Racewayitemtype);
+                if (itemlist != null)
+                {
+                    itemlist.Add(item);
+                }
             }
+                       
         }
 
         public void Dispose()
