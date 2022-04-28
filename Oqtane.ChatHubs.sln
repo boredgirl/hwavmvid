@@ -74,7 +74,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hwavmvid.Roulettebets", "Hw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hwavmvid.Roulettebetscores", "Hwavmvid.Roulettebetscores\Hwavmvid.Roulettebetscores.csproj", "{C0CE38E4-EA62-459B-A07B-456E3CCECD42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hwavmvid.Motorsport.Raceways", "Hwavmvid.Motorsport.Raceways\Hwavmvid.Motorsport.Raceways.csproj", "{85D2E13F-6D84-48F4-9C7B-92C80F03B0D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hwavmvid.Motorsport.Racewaymaps", "Hwavmvid.Motorsport.Racewaymaps\Hwavmvid.Motorsport.Racewaymaps.csproj", "{85D2E13F-6D84-48F4-9C7B-92C80F03B0D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hwavmvid.Motorsport.Shared", "Hwavmvid.Motorsport.Shared\Hwavmvid.Motorsport.Shared.csproj", "{635FFEE0-4467-403E-872E-22921664ABDC}"
 EndProject

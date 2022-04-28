@@ -48,7 +48,7 @@
     <ProjectReference Include="..\BlazorSlider\BlazorSlider.csproj" />
     <ProjectReference Include="..\BlazorDevices\BlazorDevices.csproj" />
     <ProjectReference Include="..\BlazorDownload\BlazorDownload.csproj" />
-    <ProjectReference Include="..\Hwavmvid.Motorsport.Raceways\Hwavmvid.Motorsport.Raceways.csproj" />
+    <ProjectReference Include="..\Hwavmvid.Motorsport.Racewaymaps\Hwavmvid.Motorsport.Racewaymaps.csproj" />
     <ProjectReference Include="..\Hwavmvid.Roulettebetoptions\Hwavmvid.Roulettebetoptions.csproj" />
     <ProjectReference Include="..\Hwavmvid.Roulettecoins\Hwavmvid.Roulettecoins.csproj" />
     <ProjectReference Include="..\Hwavmvid.RouletteItellisense\Hwavmvid.Rouletteitellisense.csproj" />

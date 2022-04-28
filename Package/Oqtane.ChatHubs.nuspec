@@ -128,8 +128,8 @@
     <file src="..\Hwavmvid.Roulettecoins\bin\Release\net6.0\Hwavmvid.Roulettecoins.pdb" target="lib\net6.0" />
     <file src="..\Hwavmvid.Roulettebets\bin\Release\net6.0\Hwavmvid.Roulettebets.dll" target="lib\net6.0" />
     <file src="..\Hwavmvid.Roulettebets\bin\Release\net6.0\Hwavmvid.Roulettebets.pdb" target="lib\net6.0" />
-    <file src="..\Hwavmvid.Motorsport.Raceways\bin\Release\net6.0\Hwavmvid.Motorsport.Raceways.dll" target="lib\net6.0" />
-    <file src="..\Hwavmvid.Motorsport.Raceways\bin\Release\net6.0\Hwavmvid.Motorsport.Raceways.pdb" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Motorsport.Racewaymaps\bin\Release\net6.0\Hwavmvid.Motorsport.Racewaymaps.dll" target="lib\net6.0" />
+    <file src="..\Hwavmvid.Motorsport.Racewaymaps\bin\Release\net6.0\Hwavmvid.Motorsport.Racewaymaps.pdb" target="lib\net6.0" />
     <file src="..\Hwavmvid.Motorsport.Shared\bin\Release\net6.0\Hwavmvid.Motorsport.Shared.dll" target="lib\net6.0" />
     <file src="..\Hwavmvid.Motorsport.Shared\bin\Release\net6.0\Hwavmvid.Motorsport.Shared.pdb" target="lib\net6.0" />
 
@@ -161,7 +161,7 @@
     <file src="..\Hwavmvid.Rouletteitellisense\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Hwavmvid.Roulettecoins\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Hwavmvid.Roulettebets\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
-    <file src="..\Hwavmvid.Motorsport.Raceways\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
+    <file src="..\Hwavmvid.Motorsport.Racewaymaps\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
     <file src="..\Hwavmvid.Motorsport.Shared\wwwroot\*" target="wwwroot/Modules/Oqtane.ChatHubs" />
 
 

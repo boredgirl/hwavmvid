@@ -16,7 +16,7 @@ namespace Hwavmvid.Roulettecoins
 
         private DotNetObjectReference<RoulettecoinsService> dotNetObjectReference { get; set; }
 
-        private IJSRuntime jsruntime;
+        public IJSRuntime jsruntime;
         public IJSObjectReference javascriptfile;
 
         public List<RouletteBetoptionsItem> betoptionitems { get; set; }
@@ -40,6 +40,7 @@ namespace Hwavmvid.Roulettecoins
                 this.CoinItems.Add(new RouletteCoin(item));
             }
         }
+
         public async Task InitRouletteService()
         {
             if (this.javascriptfile == null)
@@ -93,6 +94,7 @@ namespace Hwavmvid.Roulettecoins
                 }
             }
         }
+        
         
         [JSInvokable("ItemDropped")]
         public void ItemDropped(string coinid, string droppedfieldid)

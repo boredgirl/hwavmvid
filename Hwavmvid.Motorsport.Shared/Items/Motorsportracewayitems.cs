@@ -83,4 +83,11 @@ namespace Hwavmvid.Motorsport.Shared.Items
 
     }
 
+    public class MotorsportracewayEvent
+    {
+
+        public Racewaymapitem<Racewayitemtype> Item { get; set; }
+
+    }
+
 }
