@@ -8,12 +8,13 @@ using System.Linq;
 namespace Hwavmvid.Motorsport.Racewaymaps
 {
 
-    public class Motorsportraceway : IDisposable
+    public class Motorsportracewayservice : IDisposable
     {
 
         private IJSRuntime jsruntime;
         private IJSObjectReference javascriptfile;
 
+        public Racewaymap Map { get; set; }
         public List<Racewaymapitem<Racewayitemtype>> Items { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
 
         public event Action<MotorsportracewayEvent> Onitemremoved;
@@ -21,7 +22,7 @@ namespace Hwavmvid.Motorsport.Racewaymaps
         public event Action OnUpdateComponent;
         public event Action<Racewaymapitem<Racewayitemtype>> ItemRemoved;
 
-        public Motorsportraceway(IJSRuntime jsRuntime)
+        public Motorsportracewayservice(IJSRuntime jsRuntime)
         {
             this.jsruntime = jsRuntime;
         }
@@ -29,6 +30,32 @@ namespace Hwavmvid.Motorsport.Racewaymaps
         {
             this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>(
                "import", "/Modules/Oqtane.ChatHubs/hwavmvidmotorsportjsinterop.js");
+        }
+
+        public void AddMapColumnItem(int rowid, int colid, Racewaymapitem<Racewayitemtype> item)
+        {
+
+            try
+            {
+                var col = this.GetMapColumn(rowid, colid);
+                if (col != null)
+                {
+                    var itemlist = col.GetColumnItemsGenericlistBytype(item.Racewayitemtype);
+                    if (itemlist != null)
+                    {
+                        itemlist.Add(item);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+        }
+        public Racewaycolumn GetMapColumn(int rowid, int colid)
+        {
+            return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
         }
         public void Addmapitem(Racewaymapitem<Racewayitemtype> mapitem)
         {
@@ -55,10 +82,6 @@ namespace Hwavmvid.Motorsport.Racewaymaps
         public void UpdateComponent()
         {
             this.OnUpdateComponent?.Invoke();
-        }
-        public async Task<string> Prompt(string message)
-        {
-            return await this.javascriptfile.InvokeAsync<string>("showPrompt", message);
         }
         public void Dispose()
         {

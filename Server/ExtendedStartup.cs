@@ -34,6 +34,7 @@ using Hwavmvid.Roulettesurface;
 using Hwavmvid.Roulettecoins;
 using Hwavmvid.Roulettebetoptions;
 using Hwavmvid.Roulettebets;
+using Hwavmvid.Motorsport.Racewaymaps;
 
 namespace Oqtane
 {
@@ -80,6 +81,7 @@ namespace Oqtane
             services.AddScoped<RouletteBetoptionsService, RouletteBetoptionsService>();
             services.AddScoped<RouletteBetsService, RouletteBetsService>();
             services.AddScoped<RouletteitellisenseService, RouletteitellisenseService>();
+            services.AddScoped<Motorsportracewayservice, Motorsportracewayservice>();
 
             services.AddServerSideBlazor()
                 .AddHubOptions(options => options.MaximumReceiveMessageSize = 512 * 1024);

@@ -11,14 +11,12 @@ namespace Hwavmvid.Motorsport.Shared.Items
         public List<Racewaycolumn> Columns { get; set; } = new List<Racewaycolumn>();
 
     }
-
     public class Racewayrow
     {
 
         public int RowId { get; set; }
 
     }
-
     public class Racewaycolumn
     {
 
@@ -30,23 +28,16 @@ namespace Hwavmvid.Motorsport.Shared.Items
         public List<Racewaymapitem<Racewayitemtype>> Buildings { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
         public List<Racewaymapitem<Racewayitemtype>> Landscapes { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
 
-        public List<Racewaymapitem<Racewayitemtype>> GetColumnItemsByType(Racewayitemtype itemtype) {
-            
-            var propertyinfos = this.GetType().GetProperties().Where(item => item.GetType() == typeof(List<Racewayitemtype>));
-            foreach (var propertyinfo in propertyinfos)
-            {
-                if (itemtype.GetType() == propertyinfo.ReflectedType)
-                {
-                    var propvalue = (List<Racewaymapitem<Racewayitemtype>>)propertyinfo.GetValue(propertyinfo.Name);
-                    return propvalue;
-                }
-            }
+        public List<Racewaymapitem<Racewayitemtype>> GetColumnItemsGenericlistBytype(Racewayitemtype itemtype) {
 
-            return null;
+            return itemtype == Racewayitemtype.Racecar ? this.Racecars :
+                   itemtype == Racewayitemtype.Streetway ? this.Streetways :
+                   itemtype == Racewayitemtype.Building ? this.Buildings :
+                   itemtype == Racewayitemtype.Platform ? this.Landscapes : 
+                   null;
         }
     
     }
-
     public class Racewaymapitem<ItemType>
     {
 
@@ -72,17 +63,15 @@ namespace Hwavmvid.Motorsport.Shared.Items
         public double ImageHeight { get; set; }
 
     }
-
     public enum Racewayitemtype
     {
 
         Racecar,
         Streetway,
         Building,
-        Landscape,
+        Platform,
 
     }
-
     public class MotorsportracewayEvent
     {
 

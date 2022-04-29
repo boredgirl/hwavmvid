@@ -1,10 +1,13 @@
 ﻿@namespace Hwavmvid.Motorsport.Racewaymaps
+@inherits Motorsportracewaymapcreatorbase
 
 @using System
 @using System.Linq
 @using Microsoft.AspNetCore.Components
 @using Microsoft.AspNetCore.Components.Web
 @using Hwavmvid.Motorsport.Shared.Items
+
+@inject Motorsportracewayservice Motorsportracewayservice
 
 <style type="text/css">
 
@@ -27,7 +30,7 @@
 
 </style>
 
-<div class="p-1 p-sm-2 text-center bg-transparent">
+<div class="p-1 p-sm-2 w-100 h-100 text-center bg-transparent">
 
     @if (loading)
     {
@@ -39,7 +42,7 @@
     @if (!loading)
     {
 
-        <div>
+        <div class="my-2">
 
             @foreach (var item in Enum.GetValues<Racewayitemtype>())
             {
@@ -50,16 +53,16 @@
 
         </div>
 
-        <div class="mx-auto p-0">
+        <div class="p-0 w-100 h-100">
 
-            <div class="motorsport-map" style="width: @(containerwidth)px; height: @(containerheight)px;">
+            <div class="mx-auto" style="width: @(containerwidth)px; height: @(containerheight)px;">
 
-                @foreach (var row in Map.Rows)
+                @foreach (var row in Motorsportracewayservice.Map.Rows)
                 {
 
                     <div class="row p-0 g-0">
 
-                        @foreach (var col in Map.Columns.Where(item => item.RowId == row.RowId))
+                        @foreach (var col in Motorsportracewayservice.Map.Columns.Where(item => item.RowId == row.RowId))
                         {                            
 
                             <div class="col position-relative p-0" style="width: @(griditemwidth)px; height: @(griditemheight)px;">
@@ -73,11 +76,27 @@
                                     </div>
                                 }
 
+                                @foreach (var item in col.Streetways)
+                                {
+                                    <div class="position-absolute" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
+                                @foreach (var item in col.Buildings)
+                                {
+                                    <div class="position-absolute" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
+
+                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
+
+                                    </div>
+                                }
+
                                 @foreach (var item in col.Landscapes)
                                 {
                                     <div class="position-absolute w-100 h-100" style="z-index: @(item.ZIndex); background-color: @(item.BackgroundColor); transform: rotate(@(item.Rotation)deg); top: 0px; left: 0px;">
-
-                                        <img src="/Modules/Oqtane.ChatHubs/@(string.Concat(item.ImageUrl, item.ImageUrlExtension))" width="@item.ImageWidth" height="@item.ImageHeight" />
 
                                     </div>
                                 }
@@ -113,13 +132,12 @@
 
     protected override Task OnInitializedAsync()
     {
-        this.Map = this.GetMap();
+        this.Motorsportracewayservice.Map = this.GetMap();
         this.InitlandscapeItems();
 
         return base.OnInitializedAsync();
     }
 
-    public Racewaymap Map { get; set; }
     public Racewaymap GetMap()
     {
 
@@ -148,16 +166,15 @@
     public void InitlandscapeItems()
     {
 
-        foreach (var row in this.Map.Rows)
+        foreach (var row in Motorsportracewayservice.Map.Rows)
         {
 
-            foreach (var container in this.Map.Columns.Where(item => item.RowId == row.RowId).Select((item, index) => new { item = item, index = index }))
+            foreach (var container in Motorsportracewayservice.Map.Columns.Where(item => item.RowId == row.RowId).Select((item, index) => new { item = item, index = index }))
             {
 
-                this.landscapeitem = new Racewaymapitem<Racewayitemtype>(Guid.NewGuid().ToString(), Racewayitemtype.Landscape);
+                this.landscapeitem = new Racewaymapitem<Racewayitemtype>(Guid.NewGuid().ToString(), Racewayitemtype.Platform);
                 this.landscapeitem.RowId = row.RowId;
                 this.landscapeitem.ColumnId = container.index + 1;
-                this.landscapeitem.Id = Guid.NewGuid().ToString();
                 this.landscapeitem.ZIndex = 1;
                 this.landscapeitem.Opacity = 1;
                 this.landscapeitem.BackgroundColor = this.Landscapegreen;
@@ -168,28 +185,9 @@
                 this.landscapeitem.ImageUrlExtension = string.Empty;
                 this.landscapeitem.Value = 0;
 
-                this.AddMapItem(landscapeitem.RowId, landscapeitem.ColumnId, this.landscapeitem);
+                this.Motorsportracewayservice.AddMapColumnItem(landscapeitem.RowId, landscapeitem.ColumnId, this.landscapeitem);
             }
         }
-    }
-
-    public Racewaycolumn GetMapColumn(int rowid, int colid)
-    {
-        return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
-    }
-    public void AddMapItem(int rowid, int colid, Racewaymapitem<Racewayitemtype> item)
-    {
-
-        var col = this.GetMapColumn(rowid, colid);
-        if (col != null)
-        {
-            var itemlist = col.GetColumnItemsByType(item.Racewayitemtype);
-            if (itemlist != null)
-            {
-                itemlist.Add(item);
-            }
-        }
-                       
     }
 
 }
