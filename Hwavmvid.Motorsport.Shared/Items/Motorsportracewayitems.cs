@@ -1,54 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hwavmvid.Motorsport.Shared.Items
 {
 
-    public class Racewaymap
+    public class MRacewaymap
     {
 
-        public List<Racewayrow> Rows { get; set; } = new List<Racewayrow>();
-        public List<Racewaycolumn> Columns { get; set; } = new List<Racewaycolumn>();
+        public List<MRacewayrow> Rows { get; set; } = new List<MRacewayrow>();
+        public List<MRacewaycolumn> Columns { get; set; } = new List<MRacewaycolumn>();
 
     }
-    public class Racewayrow
+    public class MRacewayrow
     {
 
         public int RowId { get; set; }
 
     }
-    public class Racewaycolumn
+    public class MRacewaycolumn
     {
 
         public int ColumnId { get; set; }
         public int RowId { get; set; }
-        
-        public List<Racewaymapitem<Racewayitemtype>> Racecars { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
-        public List<Racewaymapitem<Racewayitemtype>> Streetways { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
-        public List<Racewaymapitem<Racewayitemtype>> Buildings { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
-        public List<Racewaymapitem<Racewayitemtype>> Landscapes { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
 
-        public List<Racewaymapitem<Racewayitemtype>> GetColumnItemsGenericlistBytype(Racewayitemtype itemtype) {
+        public string ElementId { get; set; } = Guid.NewGuid().ToString().Replace("-", "_");
 
-            return itemtype == Racewayitemtype.Racecar ? this.Racecars :
-                   itemtype == Racewayitemtype.Streetway ? this.Streetways :
-                   itemtype == Racewayitemtype.Building ? this.Buildings :
-                   itemtype == Racewayitemtype.Platform ? this.Landscapes : 
+        public List<MRacewaymapitem<MRacewayitemtype>> Racecars { get; set; } = new List<MRacewaymapitem<MRacewayitemtype>>();
+        public List<MRacewaymapitem<MRacewayitemtype>> Streetways { get; set; } = new List<MRacewaymapitem<MRacewayitemtype>>();
+        public List<MRacewaymapitem<MRacewayitemtype>> Buildings { get; set; } = new List<MRacewaymapitem<MRacewayitemtype>>();
+        public List<MRacewaymapitem<MRacewayitemtype>> Platforms { get; set; } = new List<MRacewaymapitem<MRacewayitemtype>>();
+
+        public List<MRacewaymapitem<MRacewayitemtype>> GetColumnItemsGenericlistBytype(MRacewayitemtype itemtype) {
+
+            return itemtype == MRacewayitemtype.Racecar ? this.Racecars :
+                   itemtype == MRacewayitemtype.Streetway ? this.Streetways :
+                   itemtype == MRacewayitemtype.Building ? this.Buildings :
+                   itemtype == MRacewayitemtype.Platform ? this.Platforms : 
                    null;
         }
     
     }
-    public class Racewaymapitem<ItemType>
+    public class MRacewaymapitem<ItemType>
     {
 
-        public Racewaymapitem(string id, Racewayitemtype itemtype)
+        public MRacewaymapitem(string id, MRacewayitemtype itemtype)
         {
             this.Id = id;
             this.Racewayitemtype = itemtype;
         }
 
         public string Id { get; set; }
-        public Racewayitemtype Racewayitemtype { get; set; }
+        public MRacewayitemtype Racewayitemtype { get; set; }
 
         public int RowId { get; set; }
         public int ColumnId { get; set; }
@@ -63,7 +66,13 @@ namespace Hwavmvid.Motorsport.Shared.Items
         public double ImageHeight { get; set; }
 
     }
-    public enum Racewayitemtype
+    public class MRacewayevent
+    {
+
+        public MRacewaymapitem<MRacewayitemtype> Item { get; set; }
+
+    }
+    public enum MRacewayitemtype
     {
 
         Racecar,
@@ -72,10 +81,11 @@ namespace Hwavmvid.Motorsport.Shared.Items
         Platform,
 
     }
-    public class MotorsportracewayEvent
+    public class DraggableObject
     {
 
-        public Racewaymapitem<Racewayitemtype> Item { get; set; }
+        public string ElementId { get; set; } = Guid.NewGuid().ToString().Replace("-", "_");
+        public MRacewayitemtype Type { get; set; }
 
     }
 

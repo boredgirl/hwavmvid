@@ -1,4 +1,4 @@
-export function initroulettecoins(dotnetobjref, elementId, type) {
+export function initmotorsportmap(dotnetobjref, elementId, type) {
 
     var __obj = {
 
@@ -7,29 +7,29 @@ export function initroulettecoins(dotnetobjref, elementId, type) {
             this.addevents = function () {
 
                 document.getElementById(elementId).addEventListener('dragstart', function (event) {
-
+                    console.log("on drag");
                     event.dataTransfer.effectAllowed = "move";
 
                     var id = event.target.id;
                     var arr = id.split('-');
-                    var coinid = arr[arr.length - 1];
+                    var obj_id = arr[arr.length - 1];
 
-                    var exceptDropzone = '.motorsportracewaymapdropzone-' + coinid;
-                    var dropzones = document.querySelectorAll('.motorsportracewaymapdropzone:not(' + exceptDropzone + ')');
+                    var exceptDropzone = '.motorsportdropzone-' + obj_id;
+                    var dropzones = document.querySelectorAll('.motorsportdropzone:not(' + exceptDropzone + ')');
                     Array.prototype.forEach.call(dropzones, function (item) {
 
                         item.style.display = "block";
                     });
 
-                    event.dataTransfer.setData("dropzonefieldelementid", coinid);
+                    event.dataTransfer.setData("dropzonefieldelementid", obj_id);
                 });
                 document.getElementById(elementId).addEventListener('dragend', function (event) {
 
-                    var dropzones = document.getElementsByClassName('motorsportracewaymapdropzone');
+                    var dropzones = document.getElementsByClassName('motorsportdropzone');
                     Array.prototype.forEach.call(dropzones, function (item) {
 
                         item.style.display = "none";
-                        item.classList.remove('active-motorsportracewaymapdropzone');
+                        item.classList.remove('active-motorsportdropzone');
                     });
                 });
             };
@@ -44,14 +44,17 @@ export function initroulettecoins(dotnetobjref, elementId, type) {
             this.addevents = function () {
 
                 document.getElementById(elementId).addEventListener('dragenter', function (event) {
+                    console.log("on drag enter");
+                    if (event.target.classList !== undefined) {
 
-                    event.target.classList.add('active-motorsportracewaymapdropzone');
+                        event.target.classList.add('active-motorsportdropzone');
+                    }
                 });
                 document.getElementById(elementId).addEventListener('dragleave', function (event) {
 
                     if (event.target.classList !== undefined) {
 
-                        event.target.classList.remove('active-motorsportracewaymapdropzone');
+                        event.target.classList.remove('active-motorsportdropzone');
                     }
                 });
                 document.getElementById(elementId).addEventListener('dragover', function (event) {

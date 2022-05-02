@@ -13,26 +13,48 @@ namespace Hwavmvid.Motorsport.Racewaymaps
 
         private IJSRuntime jsruntime;
         private IJSObjectReference javascriptfile;
+        private DotNetObjectReference<Motorsportracewayservice> serviceobjref;
 
-        public Racewaymap Map { get; set; }
-        public List<Racewaymapitem<Racewayitemtype>> Items { get; set; } = new List<Racewaymapitem<Racewayitemtype>>();
+        public MRacewaymap Map { get; set; }
+        public List<DraggableObject> DraggableItems { get; set; } = new List<DraggableObject>();
 
-        public event Action<MotorsportracewayEvent> Onitemremoved;
         public event Action UpdateUI;
         public event Action OnUpdateComponent;
-        public event Action<Racewaymapitem<Racewayitemtype>> ItemRemoved;
+        public event Action<MRacewayevent> Onitemremoved;
+        public event Action<MRacewaymapitem<MRacewayitemtype>> ItemRemoved;
 
         public Motorsportracewayservice(IJSRuntime jsRuntime)
         {
             this.jsruntime = jsRuntime;
+            this.serviceobjref = DotNetObjectReference.Create(this);
         }
         public async Task InitMotorsportracewayService()
         {
-            this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>(
-               "import", "/Modules/Oqtane.ChatHubs/hwavmvidmotorsportjsinterop.js");
+
+            this.javascriptfile = await this.jsruntime.InvokeAsync<IJSObjectReference>("import", "/Modules/Oqtane.ChatHubs/hwavmvidmotorsportjsinterop.js");
+            if (this.javascriptfile != null)
+            {
+                foreach (var draggableitem in this.DraggableItems)
+                {
+                    var obj = await this.javascriptfile.InvokeAsync<IJSObjectReference>("initmotorsportmap", this.serviceobjref, Shared.MotorsportConstants.draggableitemprefix + draggableitem.ElementId, "draggable");
+                    await obj.InvokeVoidAsync("removeevents");
+                    await obj.InvokeVoidAsync("addevents");
+                }
+
+                foreach (var column in this.Map.Columns)
+                {
+                    var obj = await this.javascriptfile.InvokeAsync<IJSObjectReference>("initmotorsportmap", this.serviceobjref, Shared.MotorsportConstants.droppableitemprefix + column.ElementId, "droppable");
+                    await obj.InvokeVoidAsync("removeevents");
+                    await obj.InvokeVoidAsync("addevents");
+                }
+            }
         }
 
-        public void AddMapColumnItem(int rowid, int colid, Racewaymapitem<Racewayitemtype> item)
+        public MRacewaycolumn GetMapColumn(int rowid, int colid)
+        {
+            return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
+        }
+        public void AddMapColumnItem(int rowid, int colid, MRacewaymapitem<MRacewayitemtype> item)
         {
 
             try
@@ -53,30 +75,16 @@ namespace Hwavmvid.Motorsport.Racewaymaps
             }
 
         }
-        public Racewaycolumn GetMapColumn(int rowid, int colid)
+        
+        public void Createdraggableitems()
         {
-            return this.Map.Columns.FirstOrDefault(item => item.RowId == rowid && item.ColumnId == colid);
+            foreach (var itemtype in Enum.GetValues(typeof(MRacewayitemtype)))
+                this.DraggableItems.Add(new DraggableObject() { Type = (MRacewayitemtype)itemtype });
         }
-        public void Addmapitem(Racewaymapitem<Racewayitemtype> mapitem)
+
+        public void HandleItemRemoved(MRacewaymapitem<MRacewayitemtype> item)
         {
-            if (this.Items.Find(item => item.ColumnId.Equals(mapitem.Id)) == null)
-            {
-                this.Items.Add(mapitem);
-                this.UpdateUI?.Invoke();
-            }
-        }
-        public void Removemapitem(string id)
-        {
-            Racewaymapitem<Racewayitemtype> item = this.Items.FirstOrDefault(item => item.Id == id);
-            if (item != null)
-            {
-                this.Items.Remove(item);
-                this.ItemRemoved?.Invoke(item);
-            }
-        }
-        public void ExposeRemovedItem(Racewaymapitem<Racewayitemtype> item)
-        {
-            MotorsportracewayEvent e = new MotorsportracewayEvent() { Item = item };
+            MRacewayevent e = new MRacewayevent() { Item = item };
             this.Onitemremoved?.Invoke(e);
         }
         public void UpdateComponent()

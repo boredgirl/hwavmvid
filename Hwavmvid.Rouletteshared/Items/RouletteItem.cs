@@ -9,6 +9,7 @@ namespace Hwavmvid.Rouletteshared.Items
 
     public class RouletteItem
     {
+
         public int RowId { get; set; }
         public int ColumnId { get; set; }
         public string Id { get; set; }
@@ -21,6 +22,7 @@ namespace Hwavmvid.Rouletteshared.Items
         public double ImageWidth { get; set; }
         public double ImageHeight { get; set; }
         public int Value { get; set; }
+
     }
     public class RouletteBall : RouletteItem {}
     public class RouletteNumber : RouletteItem {}
